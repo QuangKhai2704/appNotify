@@ -6,7 +6,9 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect, useCallback} from 'react';
+import messaging from '@react-native-firebase/messaging';
+import {Alert} from 'react-native-elements';
 import {
   SafeAreaView,
   StyleSheet,
@@ -24,7 +26,50 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+messaging().setBackgroundMessageHandler((remoteMessage) => {
+  if (remoteMessage) {
+    console.log('background', JSON.stringify(remoteMessage));
+  }
+});
+
+const App = () => {
+  useEffect(() => {
+    (async () => {
+      const authorizationStatus = await messaging().requestPermission();
+
+      // Init FCM token
+      if (
+        authorizationStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+        authorizationStatus === messaging.AuthorizationStatus.PROVISIONAL
+      ) {
+        const token = await messaging().getToken();
+        console.log('FCM token is', token);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const onMessage = messaging().onMessage((remote) => {
+        if (remote) {
+          // Alert.alert('A new FCM message arrived!', JSON.stringify(remote));
+          console.log('foreground', JSON.stringify(remote));
+        }
+      });
+      await messaging()
+        .getInitialNotification()
+        .then((remoteMessage) => {
+          if (remoteMessage) {
+            console.log('open', remoteMessage);
+          }
+        })
+        .catch((e) => console.log('err', e));
+      return () => {
+        onMessage();
+      };
+    })();
+  }, []);
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -40,26 +85,26 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
+              <Text style={styles.sectionTitle}>alo444</Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.
               </Text>
             </View>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
+              <Text style={styles.sectionTitle}>alo876</Text>
               <Text style={styles.sectionDescription}>
                 <ReloadInstructions />
               </Text>
             </View>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
+              <Text style={styles.sectionTitle}>alo567</Text>
               <Text style={styles.sectionDescription}>
                 <DebugInstructions />
               </Text>
             </View>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
+              <Text style={styles.sectionTitle}>alo123</Text>
               <Text style={styles.sectionDescription}>
                 Read the docs to discover what to do next:
               </Text>

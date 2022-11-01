@@ -1,5 +1,6 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+$RNFirebaseAsStaticFramework = true
 
 platform :ios, '10.0'
 
@@ -7,6 +8,8 @@ target 'myapp' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
+
+  use_frameworks! :linkage => :static
 
   target 'myappTests' do
     inherit! :complete
@@ -17,17 +20,17 @@ target 'myapp' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable these next few lines.
-  use_flipper!({ 'Flipper' => '0.95.0', 'Flipper-Folly' => '2.6.7'})
+#  use_flipper!({ 'Flipper' => '0.95.0', 'Flipper-Folly' => '2.6.7'})
   post_install do |installer|
     flipper_post_install(installer)
   end
 end
 
-target 'myapp-tvOS' do
-  # Pods for myapp-tvOS
-
-  target 'myapp-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-end
+#target 'myapp-tvOS' do
+#  # Pods for myapp-tvOS
+#
+#  target 'myapp-tvOSTests' do
+#    inherit! :search_paths
+#    # Pods for testing
+#  end
+#end

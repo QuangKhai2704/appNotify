@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "189660037458",
+    "project_id": "appnotify-e8517",
+    "storage_bucket": "appnotify-e8517.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189660037458:android:4959d52937cfb780af7a8b",
+        "android_client_info": {
+          "package_name": "com.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189660037458-odcn7hmvndf97fa0attjiiincciecdat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFocxtK7pfs_CdxZgQwY_hAFrKiKLm-so"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189660037458-odcn7hmvndf97fa0attjiiincciecdat.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "189660037458-9ulhs8fue1kujkv16h9qig1henj7ajkp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Bkav.valacloud"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
